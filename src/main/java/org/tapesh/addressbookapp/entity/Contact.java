@@ -12,6 +12,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(uniqueConstraints = {
+        @UniqueConstraint(
+                name = "unique_contact_per_addressbook",
+                columnNames = {"firstName", "lastName", "addressBookId"}
+        )
+})
 public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
