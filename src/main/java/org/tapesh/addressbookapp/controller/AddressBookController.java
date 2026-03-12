@@ -27,7 +27,7 @@ public class AddressBookController {
         return ResponseEntity.status(HttpStatus.CREATED).body(addressBookService.addAddressBook(addressBookDto));
     }
 
-    @GetMapping("/addressbooks")
+    @GetMapping
     public ResponseEntity<List<AddressBook>> getAllAddressBooks(){
         return ResponseEntity.status(HttpStatus.OK).body(addressBookService.getAddressBooks());
     }
