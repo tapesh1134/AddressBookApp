@@ -11,6 +11,7 @@ import org.tapesh.addressbookapp.entity.Contact;
 import org.tapesh.addressbookapp.service.ContactService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/contacts")
@@ -23,5 +24,15 @@ public class ContactSearchController {
     @GetMapping("/search")
     public ResponseEntity<List<Contact>> searchByStateAndCity(@RequestParam(required = false) String state, @RequestParam(required = false) String city){
         return ResponseEntity.status(HttpStatus.OK).body(contactService.searchByStateAndCity(state, city));
+    }
+
+    @GetMapping("/group/city")
+    public ResponseEntity<Map<String, List<Contact>>> groupByCity(){
+        return ResponseEntity.status(HttpStatus.OK).body(contactService.viewPersonsByCity());
+    }
+
+    @GetMapping("/group/state")
+    public ResponseEntity<Map<String, List<Contact>>> groupByState(){
+        return ResponseEntity.status(HttpStatus.OK).body(contactService.viewPersonsByState());
     }
 }

@@ -12,6 +12,8 @@ import org.tapesh.addressbookapp.repository.AddressBookRepo;
 import org.tapesh.addressbookapp.repository.ContactRepo;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class ContactService {
@@ -64,5 +66,13 @@ public class ContactService {
 
     public List<Contact> searchByStateAndCity(String state, String city) {
         return contactRepo.findAllByStateAndCity(state,city);
+    }
+
+    public Map<String, List<Contact>> viewPersonsByCity() {
+        return contactRepo.findAll().stream().collect(Collectors.groupingBy(Contact::getCity));
+    }
+
+    public Map<String, List<Contact>> viewPersonsByState() {
+        return contactRepo.findAll().stream().collect(Collectors.groupingBy(Contact::getState));
     }
 }
