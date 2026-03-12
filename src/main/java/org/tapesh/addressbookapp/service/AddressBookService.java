@@ -9,6 +9,8 @@ import org.tapesh.addressbookapp.dto.AddressBookDto;
 import org.tapesh.addressbookapp.entity.AddressBook;
 import org.tapesh.addressbookapp.repository.AddressBookRepo;
 
+import java.util.List;
+
 @Service
 public class AddressBookService {
     private AddressBookRepo addressBookRepo;
@@ -23,5 +25,9 @@ public class AddressBookService {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Address book already exist");
         }
         return addressBookRepo.save(AddressBook.builder().name(addressBook.getName()).build());
+    }
+
+    public List<AddressBook> getAddressBooks(){
+        return addressBookRepo.findAll();
     }
 }
