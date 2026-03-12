@@ -27,4 +27,24 @@ public class ContactService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNPROCESSABLE_CONTENT, "Address Book Not Found"));
         return contactRepo.save(Contact.builder().firstName(addContactDto.getFirstName()).lastName(addContactDto.getLastName()).email(addContactDto.getEmail()).phone(addContactDto.getPhoneNumber()).address(addContactDto.getAddress()).city(addContactDto.getCity()).state(addContactDto.getState()).zip(addContactDto.getZip()).addressBook(book).build());
     };
+
+    public Contact editContact(Long addressBookId, Long contactId, ContactDto updateContactDto) {
+
+        Contact contact = contactRepo.findByIdAndAddressBookId(contactId, addressBookId)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "The requested contact does not exist in the specified address book."
+                ));
+
+        contact.setFirstName(updateContactDto.getFirstName());
+        contact.setLastName(updateContactDto.getLastName());
+        contact.setEmail(updateContactDto.getEmail());
+        contact.setPhone(updateContactDto.getPhoneNumber());
+        contact.setAddress(updateContactDto.getAddress());
+        contact.setCity(updateContactDto.getCity());
+        contact.setState(updateContactDto.getState());
+        contact.setZip(updateContactDto.getZip());
+
+        return contactRepo.save(contact);
+    }
 }

@@ -26,4 +26,9 @@ public class ContactController {
         return ResponseEntity.status(HttpStatus.CREATED).body(contactService.addContact(addressBookId, contactDto));
     }
 
+    @PutMapping("/contacts/{contactId}")
+    public ResponseEntity<Contact> editContact(@PathVariable Long addressBookId, @PathVariable Long contactId, @Valid @RequestBody ContactDto contactDto){
+        return ResponseEntity.status(HttpStatus.OK).body(contactService.editContact(addressBookId ,contactId, contactDto));
+    }
+
 }
