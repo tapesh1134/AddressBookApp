@@ -4,7 +4,6 @@ package org.tapesh.addressbookapp.controller;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.tapesh.addressbookapp.dto.ContactDto;
@@ -31,4 +30,8 @@ public class ContactController {
         return ResponseEntity.status(HttpStatus.OK).body(contactService.editContact(addressBookId ,contactId, contactDto));
     }
 
+    @DeleteMapping("/contacts/{contactId}")
+    public ResponseEntity<Contact> deleteContact(@PathVariable Long addressBookId, @PathVariable Long contactId){
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(contactService.deleteContact(addressBookId,contactId));
+    }
 }
