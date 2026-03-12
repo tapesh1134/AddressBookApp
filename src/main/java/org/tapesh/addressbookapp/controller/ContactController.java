@@ -10,6 +10,8 @@ import org.tapesh.addressbookapp.dto.ContactDto;
 import org.tapesh.addressbookapp.entity.Contact;
 import org.tapesh.addressbookapp.service.ContactService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/addressbook/{addressBookId}")
 public class ContactController {

@@ -11,6 +11,8 @@ import org.tapesh.addressbookapp.entity.Contact;
 import org.tapesh.addressbookapp.repository.AddressBookRepo;
 import org.tapesh.addressbookapp.repository.ContactRepo;
 
+import java.util.List;
+
 @Service
 public class ContactService {
     private ContactRepo contactRepo;
@@ -58,5 +60,9 @@ public class ContactService {
         ));
         contactRepo.delete(contact);
         return contact;
+    }
+
+    public List<Contact> searchByStateAndCity(String state, String city) {
+        return contactRepo.findAllByStateAndCity(state,city);
     }
 }
