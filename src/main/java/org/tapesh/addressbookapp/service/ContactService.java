@@ -75,4 +75,12 @@ public class ContactService {
     public Map<String, List<Contact>> viewPersonsByState() {
         return contactRepo.findAll().stream().collect(Collectors.groupingBy(Contact::getState));
     }
+
+    public Map<String, Long> viewCountByCity() {
+        return contactRepo.findAll().stream().collect(Collectors.groupingBy(Contact::getCity,Collectors.counting()));
+    }
+
+    public Map<String, Long> viewCountByState() {
+        return contactRepo.findAll().stream().collect(Collectors.groupingBy(Contact::getState, Collectors.counting()));
+    }
 }
